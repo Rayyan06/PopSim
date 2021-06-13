@@ -1,0 +1,18 @@
+const WIDTH = 500;
+const HEIGHT = 500;
+const PARTICLE_COLOR = "rgb(0, 0, 255)";
+const PARTICLE_SIZE = 5;
+const PARTICLE_SPEED = 5;
+const PARTICLE_COUNT = 100;
+const FOOD_COLOR = "rgb(255, 0, 0)";
+const FOOD_SIZE = 3;
+
+export {
+  FOOD_COLOR,
+  WIDTH,
+  HEIGHT,
+  PARTICLE_COLOR,
+  PARTICLE_SIZE,
+  PARTICLE_SPEED,
+  PARTICLE_COUNT,
+};
