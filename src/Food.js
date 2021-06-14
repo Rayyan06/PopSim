@@ -1,4 +1,4 @@
-import { FOOD_COLOR, FOOD_SIZE } from "./constants";
+import { FOOD_COLOR, FOOD_SIZE, WIDTH, HEIGHT } from "./constants";
 
 export default class Food {
   constructor(x, y) {

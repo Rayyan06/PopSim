@@ -6,6 +6,7 @@ const PARTICLE_SPEED = 5;
 const PARTICLE_COUNT = 100;
 const FOOD_COLOR = "rgb(255, 0, 0)";
 const FOOD_SIZE = 3;
+const FOOD_COUNT = 50;
 
 export {
   FOOD_COLOR,
@@ -15,4 +16,6 @@ export {
   PARTICLE_SIZE,
   PARTICLE_SPEED,
   PARTICLE_COUNT,
+  FOOD_SIZE,
+  FOOD_COUNT,
 };
