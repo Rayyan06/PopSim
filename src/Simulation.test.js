@@ -37,19 +37,18 @@ describe("Simulation", () => {
   });
   it("should draw the right things in draw", () => {
     sim.setup();
-    const drawParticle = jest.spyOn(Particle, "draw");
-    const moveParticle = jest.spyOn(Particle, "move");
+    let particle = sim.particles[0];
+    let food = sim.foods[0];
+    const drawParticle = jest.spyOn(particle, "draw");
+    const moveParticle = jest.spyOn(particle, "move");
 
-    const drawFood = jest.spyOn(Food, "draw");
+    const drawFood = jest.spyOn(food, "draw");
 
     sim.draw(ctx);
 
     expect(drawParticle).toHaveBeenCalledWith(ctx);
     expect(moveParticle).toHaveBeenCalled();
 
-    expect(drawParticle).toHaveBeenCalledTimes(sim.particles.length);
-
     expect(drawFood).toHaveBeenCalledWith(ctx);
-    expect(drawFood).toHaveBeenCalledTimes(sim.foods.length);
   });
 });

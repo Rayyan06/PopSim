@@ -13,7 +13,8 @@ export default class Particle {
     this.pos = new Vector2d(getRandomInt(0, WIDTH), getRandomInt(0, HEIGHT));
     this.vel = new Vector2d(0, 0);
     this.color = PARTICLE_COLOR;
-    this.draw.bind(this);
+    this.nearestFood = null;
+    this.closeFoods = [];
   }
 
   draw(ctx) {
@@ -25,6 +26,28 @@ export default class Particle {
 
   move() {
     this.pos.add(this.vel);
+    this.moveToFood(this.nearestFood);
+  }
+
+  moveToFood(food) {
+    if (!food) return;
+    // First, calculate the angle to nearest Food
+    let angle = Math.atan2(food.pos.y - this.pos.y, food.pos.x - this.pos.x);
+
+    this.vel.x = Math.cos(angle) * PARTICLE_SPEED;
+    this.vel.y = Math.sin(angle) * PARTICLE_SPEED;
+  }
+
+  getNearestFood() {
+    let nearestFoodDistance = this.distance(this.nearestFood);
+    let closeFoodDistance;
+    this.closeFoods.forEach((closeFood) => {
+      closeFoodDistance = this.distance(closeFood);
+      if (closeFoodDistance < nearestFoodDistance) {
+        this.nearestFood = closeFood;
+        nearestFoodDistance = closeFoodDistance;
+      }
+    });
   }
 
   checkWallCollisions() {
@@ -39,6 +62,7 @@ export default class Particle {
       this.pos.y = 0 + PARTICLE_SIZE;
     }
   }
+
   /*
     nearestCreature(creatures) {
         let closestDistance = WIDTH;
@@ -62,7 +86,8 @@ export default class Particle {
     }
 */
 
-  creatureDistance(other) {
+  distance(other) {
+    if (!other) return;
     return Math.sqrt(
       Math.pow(other.pos.x - this.pos.x, 2) +
         Math.pow(other.pos.y - this.pos.y, 2)
